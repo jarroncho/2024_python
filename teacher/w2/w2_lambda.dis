@@ -1,0 +1,93 @@
+w2_lambda.py
+  0           0 RESUME                   0
+
+  4           2 LOAD_CONST               0 (<code object <lambda> at 0x0000024A82290030, file "w2_lambda.py", line 4>)
+              4 MAKE_FUNCTION            0
+              6 STORE_NAME               0 (x)
+
+  6           8 LOAD_CONST               1 (<code object add_10 at 0x0000024A82290100, file "w2_lambda.py", line 6>)
+             10 MAKE_FUNCTION            0
+             12 STORE_NAME               1 (add_10)
+
+  9          14 PUSH_NULL
+             16 LOAD_NAME                2 (print)
+             18 LOAD_CONST               2 ('lambda:')
+             20 PUSH_NULL
+             22 LOAD_NAME                0 (x)
+             24 LOAD_CONST               3 (5)
+             26 PRECALL                  1
+             30 CALL                     1
+             40 PRECALL                  2
+             44 CALL                     2
+             54 POP_TOP
+
+ 11          56 PUSH_NULL
+             58 LOAD_NAME                2 (print)
+             60 LOAD_CONST               4 ('function:')
+             62 PUSH_NULL
+             64 LOAD_NAME                1 (add_10)
+             66 LOAD_CONST               3 (5)
+             68 PRECALL                  1
+             72 CALL                     1
+             82 PRECALL                  2
+             86 CALL                     2
+             96 POP_TOP
+
+ 15          98 BUILD_LIST               0
+            100 LOAD_CONST               5 (((1, 5), (3, 2), (2, 8)))
+            102 LIST_EXTEND              1
+            104 STORE_NAME               3 (data)
+
+ 16         106 PUSH_NULL
+            108 LOAD_NAME                2 (print)
+            110 LOAD_CONST               6 ('orginal data:')
+            112 LOAD_NAME                3 (data)
+            114 PRECALL                  2
+            118 CALL                     2
+            128 POP_TOP
+
+ 18         130 LOAD_CONST               7 (<code object get_key at 0x0000024A822901D0, file "w2_lambda.py", line 18>)
+            132 MAKE_FUNCTION            0
+            134 STORE_NAME               4 (get_key)
+
+ 22         136 PUSH_NULL
+            138 LOAD_NAME                5 (sorted)
+            140 LOAD_NAME                3 (data)
+            142 LOAD_NAME                4 (get_key)
+            144 KW_NAMES                 8
+            146 PRECALL                  2
+            150 CALL                     2
+            160 STORE_NAME               6 (sorted_data)
+
+ 23         162 PUSH_NULL
+            164 LOAD_NAME                2 (print)
+            166 LOAD_CONST               9 ('sortd data ')
+            168 LOAD_NAME                6 (sorted_data)
+            170 PRECALL                  2
+            174 CALL                     2
+            184 POP_TOP
+            186 LOAD_CONST              10 (None)
+            188 RETURN_VALUE
+
+Disassembly of <code object <lambda> at 0x0000024A82290030, file "w2_lambda.py", line 4>:
+  4           0 RESUME                   0
+              2 LOAD_FAST                0 (a)
+              4 LOAD_CONST               1 (10)
+              6 BINARY_OP                0 (+)
+             10 RETURN_VALUE
+
+Disassembly of <code object add_10 at 0x0000024A82290100, file "w2_lambda.py", line 6>:
+  6           0 RESUME                   0
+
+  7           2 LOAD_FAST                0 (a)
+              4 LOAD_CONST               1 (10)
+              6 BINARY_OP                0 (+)
+             10 RETURN_VALUE
+
+Disassembly of <code object get_key at 0x0000024A822901D0, file "w2_lambda.py", line 18>:
+ 18           0 RESUME                   0
+
+ 19           2 LOAD_FAST                0 (x)
+              4 LOAD_CONST               1 (0)
+              6 BINARY_SUBSCR
+             16 RETURN_VALUE

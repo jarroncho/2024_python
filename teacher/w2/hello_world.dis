@@ -1,0 +1,25 @@
+hello_world.py
+  0           0 RESUME                   0
+
+  3           2 LOAD_CONST               0 (<code object hello at 0x0000016FEFC60810, file "hello_world.py", line 3>)
+              4 MAKE_FUNCTION            0
+              6 STORE_NAME               0 (hello)
+
+  8           8 PUSH_NULL
+             10 LOAD_NAME                0 (hello)
+             12 PRECALL                  0
+             16 CALL                     0
+             26 POP_TOP
+             28 LOAD_CONST               1 (None)
+             30 RETURN_VALUE
+
+Disassembly of <code object hello at 0x0000016FEFC60810, file "hello_world.py", line 3>:
+  3           0 RESUME                   0
+
+  4           2 LOAD_GLOBAL              1 (NULL + print)
+             14 LOAD_CONST               1 ('Hello World from Root hello function')
+             16 PRECALL                  1
+             20 CALL                     1
+             30 POP_TOP
+             32 LOAD_CONST               0 (None)
+             34 RETURN_VALUE
