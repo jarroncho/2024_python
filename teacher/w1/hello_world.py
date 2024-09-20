@@ -1,21 +1,6 @@
-
 import sys;
-
-# hello world 
-
-print('hello world for Jarron')
-
-
-
-# print hellowrld with variable 
-def hello():
-    print('hello world in function')
-
-
-def showpythonversion():
-    print('python version is :', sys.version)
-
-# call hello function
-hello()
-
-showpythonversion()
+def my_function(name,id):
+    print(name,id)
+    print('name is ',name)
+    print('id is ',id)
+my_function(name='夏子翔',id=1100561)
