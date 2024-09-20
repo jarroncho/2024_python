@@ -18,6 +18,6 @@ def showpythonversion():
     print('python version is :', sys.version)
 
 # call hello function
-hello(name = '曾祥鎰', id = 1110519)
+hello(name = '王瑋詳', id = 1110565)
 
 showpythonversion()
