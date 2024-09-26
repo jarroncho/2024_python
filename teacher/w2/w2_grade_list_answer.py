@@ -40,9 +40,20 @@ for i in range(len(grade_list_sort)):
         
 
 print('姓名\t國文\t英文\t數學\t理化\t總分\t平均\t名次')
-print('------------------------------------------------------------')
+print('----------------------grade_list--------------------------------------')
 for i in range(len(grade_list)):
     print(grade_list[i][0], end='\t')
     for j in range(1, len(grade_list[i])):
         print(grade_list[i][j], end='\t')
+    print()
+
+print('\n')
+
+
+print('姓名\t國文\t英文\t數學\t理化\t總分\t平均\t名次')
+print('-------------------grade_list_sort-----------------------------------------')
+for i in range(len(grade_list_sort)):
+    print(grade_list_sort[i][0], end='\t')
+    for j in range(1, len(grade_list_sort[i])):
+        print(grade_list_sort[i][j], end='\t')
     print()
