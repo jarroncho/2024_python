@@ -1,3 +1,6 @@
+# pip install openpyxl
+# show read excel 
+
 import sys;   
 import datetime
 import openpyxl
@@ -12,13 +15,22 @@ def print_grade_list_data(grade_list_data):
             ## new line
             print()
 
+# Load the Excel workbook and select the sheet
 workbook = openpyxl.load_workbook('grade_list.xlsx')
 
+# Get the sheet names
 sheet_names = workbook.sheetnames
 sheet_name=sheet_names[0]
+# Print the sheet names
+print("Sheet names:", sheet_names)
 sheet = workbook[sheet_name]
+
+# Specify the cell coordinates (row and column indices, 1-based index)
+# Access the cell range
 cell_range_pattern='c5:j12'
 cell_range = sheet[cell_range_pattern]
+
+# Initialize a 2D list to store cell values
 grade_list_data = []
 
 for row in cell_range:
@@ -31,3 +43,7 @@ for row in cell_range:
 
 print('\nRead Excel file and print the data:\n')
 print_grade_list_data(grade_list_data)
+
+
+# Close the workbook (important to release resources)
+workbook.close()

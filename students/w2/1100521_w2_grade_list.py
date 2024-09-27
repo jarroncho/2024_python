@@ -30,29 +30,6 @@ print(grade_list_sort)
 for i in range(len(grade_list_sort)):    
     grade_list_sort[i][7]=i+1
 
-a=[0,0,0,0,0,0,0]
-b=[0,0,0,0,0,0,0]
-
-for i in range(len(grade_list)):
-    grade_list[i][5] = grade_list[i][1] + grade_list[i][2] + grade_list[i][3] + grade_list[i][4]
-    grade_list[i][6] = grade_list[i][5] / 4
-    a[i]=grade_list[i][6]
-
-c=sorted(a)
-
-for j in range(7): 
-    for i in range(7):
-        if a[j] == c[i]:
-            b[j]=7-i
-            break
-    
-        
-
-for i in range(len(grade_list)):
-    grade_list[i][7]=b[i]
-
-
-
 print('姓名\t國文\t英文\t數學\t理化\t總分\t平均\t名次')
 print('------------------------------------------------------------')
 
