@@ -20,38 +20,23 @@ grade_list = [['John', 72, 88, 88, 84, 0, 0, 0],
               ['Alice', 92, 79, 93, 89, 0, 0, 0], 
               ['Match', 81, 72, 62, 70, 0, 0, 0], 
               ['Sunny', 78, 77, 51, 72, 0, 0, 0]]
-for i in range(len(grade_list)):
-    grade_list[i][5]=grade_list[i][1]+grade_list[i][2]+grade_list[i][3]+grade_list[i][4]
-    grade_list[i][6]=(grade_list[i][5])/4
 
-grade_list_sort = sorted(grade_list, key=lambda x: x[5],reverse=True)
-print(grade_list_sort)
-
-for i in range(len(grade_list_sort)):    
-    grade_list_sort[i][7]=i+1
-
-a=[0,0,0,0,0,0,0]
-b=[0,0,0,0,0,0,0]
+grade=[]
 
 for i in range(len(grade_list)):
-    grade_list[i][5] = grade_list[i][1] + grade_list[i][2] + grade_list[i][3] + grade_list[i][4]
-    grade_list[i][6] = grade_list[i][5] / 4
-    a[i]=grade_list[i][6]
+    total=0
+    for j in range(1,5):
+        total=total+grade_list[i][j]
+    grade_list[i][5]=total
+    grade_list[i][6]=total/4
+    grade.append(total)
 
-c=sorted(a)
+grade.sort(reverse=True)
 
-for j in range(7): 
-    for i in range(7):
-        if a[j] == c[i]:
-            b[j]=7-i
-            break
-    
-        
-
-for i in range(len(grade_list)):
-    grade_list[i][7]=b[i]
-
-
+for i in range(0,len(grade)):
+    for j in range(0,len(grade_list)):
+        if grade_list[j][5]==grade[i]:
+            grade_list[j][7]=i+1
 
 print('姓名\t國文\t英文\t數學\t理化\t總分\t平均\t名次')
 print('------------------------------------------------------------')

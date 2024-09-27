@@ -20,15 +20,6 @@ grade_list = [['John', 72, 88, 88, 84, 0, 0, 0],
               ['Alice', 92, 79, 93, 89, 0, 0, 0], 
               ['Match', 81, 72, 62, 70, 0, 0, 0], 
               ['Sunny', 78, 77, 51, 72, 0, 0, 0]]
-for i in range(len(grade_list)):
-    grade_list[i][5]=grade_list[i][1]+grade_list[i][2]+grade_list[i][3]+grade_list[i][4]
-    grade_list[i][6]=(grade_list[i][5])/4
-
-grade_list_sort = sorted(grade_list, key=lambda x: x[5],reverse=True)
-print(grade_list_sort)
-
-for i in range(len(grade_list_sort)):    
-    grade_list_sort[i][7]=i+1
 
 a=[0,0,0,0,0,0,0]
 b=[0,0,0,0,0,0,0]
