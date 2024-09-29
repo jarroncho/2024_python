@@ -117,6 +117,14 @@ class GS_grade_list(Base_Grade_list):
                 if self.grade_list_data[j][5] == grade[i]:
                     self.grade_list_data[j][7] = i + 1
 
+# 執行 Google Sheets 成績處理
+gs_data = GS_grade_list()
+gs_data.grade_sum()
+gs_data.grade_avg()
+gs_data.grade_rank()
+print('\n')
+print_grade_list_data(gs_data.grade_list_data)
+
 '''
 # 執行 Excel 成績處理
 xlsx_data = Excel_grade_list()
@@ -127,10 +135,4 @@ print('\n')
 print_grade_list_data(xlsx_data.grade_list)
 print('\n')
 '''
-# 執行 Google Sheets 成績處理
-gs_data = GS_grade_list()
-gs_data.grade_sum()
-gs_data.grade_avg()
-gs_data.grade_rank()
-print('\n')
-print_grade_list_data(gs_data.grade_list_data)
+
