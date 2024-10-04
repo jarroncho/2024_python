@@ -16,7 +16,7 @@ def print_grade_list_data(grade_list_data):
             print()
 
 # Load the Excel workbook and select the sheet
-workbook = openpyxl.load_workbook('grade_list.xlsx')
+workbook = openpyxl.load_workbook(r'teacher\w3\grade_list.xlsx')
 
 # Get the sheet names
 sheet_names = workbook.sheetnames
