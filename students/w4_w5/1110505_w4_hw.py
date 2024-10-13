@@ -48,7 +48,6 @@ class YahooStock():
 if __name__ == "__main__":
     yahoo_stock_src = YahooStock()
 
-    #注意，GetNegativeChange()、GetChange()、GetPositiveChange()要依照當天股價的上漲和下跌幅度而調整使用
     print('Symbol\tStock Price\tChange\tDescription')
     yahoo_stock_src.FetchStockInfo('AAPL')
     print('AAPL'+'\t'+yahoo_stock_src.GetStockPrice()+'\t\t'+yahoo_stock_src.GetChange()+'\t'+yahoo_stock_src.GetDescription())
