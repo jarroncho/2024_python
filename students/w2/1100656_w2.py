@@ -1,7 +1,12 @@
-
 import sys;   
-
-
+def bubbleSort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1): 
+            if arr[j] > arr[j+1] :
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+arr=[]
+arr_sort=[]
 """
 姓名	國文	英文	數學	理化	總分	平均	名次
 John	72	    88	    88	    84			
@@ -21,17 +26,21 @@ grade_list = [['John', 72, 88, 88, 84, 0, 0, 0],
               ['Match', 81, 72, 62, 70, 0, 0, 0], 
               ['Sunny', 78, 77, 51, 72, 0, 0, 0]]
 
-print('姓名\t國文\t英文\t數學\t理化\t總分\t平均\t名次')
-print('------------------------------------------------------------')
 
 for i in range(len(grade_list)):
-    grade_list[i][5] = sum(grade_list[i][1:5])  #計算總分
-    grade_list[i][6] = grade_list[i][5]/4   #4為科目數
+  grade_list[i][5]=grade_list[i][4]+grade_list[i][3]+grade_list[i][2]+grade_list[i][1]
+  grade_list[i][6]=float(grade_list[i][5]/4)
+  arr.append(grade_list[i][6])
 
-grade_list_sort = sorted(grade_list,key = lambda grade : grade[5],reverse = True)
+arr_sort=arr
+bubbleSort(arr_sort)
+for i in range(len(grade_list)):
+  for j in range(len(grade_list)):
+    if grade_list[j][6] == arr_sort[i]:
+      grade_list[j][7]=len(grade_list)-i
 
-for i in range(len(grade_list_sort)):
-    grade_list_sort[i][7]=i+1
+print('姓名\t國文\t英文\t數學\t理化\t總分\t平均\t名次')
+print('------------------------------------------------------------')
 
 for i in range(len(grade_list)):
     print(grade_list[i][0], end='\t')
