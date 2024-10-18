@@ -47,5 +47,4 @@ if __name__ == "__main__":
 
     for i in range(0, 7):
         yahoo_stock_src.FetchStockInfo(companylist[i])
-       # print(companylist[i]+'\t'+yahoo_stock_src.GetStockPrice()+'\t'+yahoo_stock_src.GetStockChange())
         print(f'{companylist[i]}\t{yahoo_stock_src.GetStockPrice()}\t\t{yahoo_stock_src.GetStockChange()}\t{yahoo_stock_src.GetStockDes()}')
