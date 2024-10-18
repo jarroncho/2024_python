@@ -159,3 +159,5 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 teacher/w3/python_course_access_cred.json
+teacher/w4_w5/stock_search.xlsx
+teacher/w4_w5/stock_search_answer.xlsx
