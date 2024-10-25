@@ -25,10 +25,7 @@ class YahooStock():
         # 用BeautifulSoup解析HTML
         self.stock_soup = BeautifulSoup(response.text, 'html.parser')
         
-
-
         
-
     def GetStockDescription(self):
         #stock_price = self.stock_soup.find('div', {'class': 'My(6px) Pos(r) smartphone_Mt(6px)'}).find('span').text
         price_div = self.stock_soup.find('div', {'class': 'left yf-1s1umie wrap'})
