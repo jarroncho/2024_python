@@ -58,3 +58,10 @@ class GS_grade_list(Base_Grade_list):
             for j in range(1, len(self.grade_list_data)):
                 if self.grade_list_data[j][5] == grade[i]:
                     self.grade_list_data[j][7] = i + 1
+                    
+gs_data = GS_grade_list()
+gs_data.grade_sum()
+gs_data.grade_avg()
+gs_data.grade_rank()
+print('\n')
+print_grade_list_data(gs_data.grade_list_data)
