@@ -27,7 +27,7 @@ class Base:
     
 class Excel(Base):
     def __init__(self, filename, cell_range_pattern):
-        workbook = openpyxl.load_workbook(r'2024_python\teacher\w3\grade_list.xlsx')
+        workbook = openpyxl.load_workbook(r'teacher\w3\grade_list.xlsx')
 
         # Get the sheet names
         sheet_names = workbook.sheetnames
