@@ -28,9 +28,31 @@ class YahooStock():
             EC.presence_of_element_located(locator),
             "Timeout while waiting for search button")
         print("get search time",time.time()-start_time)
+
+        self.init_page=True
     
     def __del__(self):
         self.browser.quit()
+    
+    def ReFresh(self):
+        if self.init_page:
+            return
+        start_time=time.time()
+        self.browser.get("https://finance.yahoo.com/quote/")
+        print("load page time: ",time.time()-start_time)
+        locator = (By.ID, "ybar-sbq")  # 定位器
+        start_time=time.time()
+        self.input = WebDriverWait(self.browser, 30).until(
+            EC.presence_of_element_located(locator),
+            "Timeout while waiting for search input box")
+        print("get input time:",time.time()-start_time)
+
+        locator = (By.ID, "ybar-search")
+        start_time=time.time()
+        self.search = WebDriverWait(self.browser, 30).until(
+            EC.presence_of_element_located(locator),
+            "Timeout while waiting for search button")
+        print("get search time",time.time()-start_time)
 
     def FetchStockInfo(self,stock_name):
         
@@ -49,6 +71,7 @@ class YahooStock():
         )
         print("get stock "+stock_name+" page ",time.time()-start_time)
 
+        self.init_page=False
         # 用BeautifulSoup解析HTML
         self.stock_soup = BeautifulSoup(self.browser.page_source, "lxml")
         
@@ -72,7 +95,7 @@ if __name__ == "__main__":
     data = []
     stock = ['AAPL', 'GOOGL', 'AMZN', 'INTC', 'AMD', 'NVDA', 'TSLA']
     for a in stock:
-        yahoo_stock_src = YahooStock()
+        yahoo_stock_src.ReFresh()
         yahoo_stock_src.FetchStockInfo(a)
         PCD = yahoo_stock_src.Get_Price_Change_Description()
         data.append(a)
