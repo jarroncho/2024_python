@@ -21,6 +21,7 @@ from student_table import views
 
 urlpatterns = [
     path('', views.home_hello, name='home'),
+    path('grade/', include('grade.urls')),
     path('student_table/', include('student_table.urls')),
     path("admin/", admin.site.urls),
 ]
