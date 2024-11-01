@@ -12,10 +12,10 @@ class YahooStock():
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.68',
         }
 
-    def FetchStockInfo(self,sotck_name):
+    def FetchStockInfo(self,stock_name):
         
         
-        url = 'https://finance.yahoo.com/quote/' + sotck_name 
+        url = 'https://finance.yahoo.com/quote/' + stock_name 
 
         # 發送HTTP請求
         response = requests.get(url)
