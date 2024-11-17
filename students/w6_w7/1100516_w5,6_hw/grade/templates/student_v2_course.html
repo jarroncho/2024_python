@@ -1,0 +1,46 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Grade
+{% endblock %}
+
+
+{% block content %}
+  <h1>Students With Course</h1>
+  
+  <table border="solid">
+    <thead>
+      <tr>          
+        <th>Delete</th>
+        <th>Student_ID</th>
+        <th>名字</th>
+        <th>國文</th>
+        <th>英文</th>
+        <th>數學</th>
+        <th>理化</th>
+                          
+      </tr>
+  </thead>
+  <tbody>
+    {% for x in Students %}
+      <tr>              
+        <td><a href="{% url 'student_v2_delete' x.id %}">Delete</a></td>
+        <td><a href="{% url 'student_v2_update' x.id %}">{{x.student_ID}}</a></td>
+        <td><a href="{% url 'student_v2_update' x.id %}">{{x.name}}</a></td>
+        <td>{{ x.course.chinese_score }}</td>
+        <td>{{ x.course.english_score }}</td>
+        <td>{{ x.course.math_score }}</td>
+        <td>{{ x.course.physics_score }}</td>
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}
+{% block footer %}  
+<br>
+<br>
+<button onclick="window.location.href = '{% url 'student_v2_new' %}';">Add Student</button>
+<br>
+<br>
+{% endblock %}
