@@ -47,4 +47,4 @@ if __name__ == "__main__":
         price = yahoo_stock_src.GetStockPrice()
         change= yahoo_stock_src.Getdifference()
         disc  = yahoo_stock_src.GetDescription()
-        print(stock_name[i],"\t",price,'\t',change,'t',disc)
+        print(stock_name[i],"\t",'[{:>5}]'.format(price),'\t',change,'\t',disc)
