@@ -41,7 +41,6 @@ class YahooStock():
         WebDriverWait(self.browser, 30).until(
             EC.staleness_of(self.search)  
         )
-        print("獲取股票 " + stock_name + " 頁面 ", time.time() - start_time)
         self.stock_soup = BeautifulSoup(self.browser.page_source, "lxml")
 
     def GetStockPrice(self):
@@ -55,19 +54,22 @@ class YahooStock():
         return change_span
 
     def GetStockDescription(self):
-        Description_div = self.stock_soup.find('div', {'class': 'left yf-1s1umie wrap'})
-        Description_span = Description_div.find('h1', {'class':'yf-xxbei9'}).text
+        Description_span = self.stock_soup.find('h1', {'class': 'yf-xxbei9'}).text
         return Description_span
 
 if __name__ == "__main__":
     yahoo_stock_src = YahooStock()
     stock_symbols = ['AAPL', 'GOOGL', 'AMZN', 'INTC','AMD','NVDA','TSLA'] 
     result = []
+    print('Symbol  Stock Price   Change  Description')
+    flag=0
     for stock_symbol in stock_symbols:
         yahoo_stock_src.FetchStockInfo(stock_symbol)
         price = yahoo_stock_src.GetStockPrice()
         change = yahoo_stock_src.GetStockChange()
         description = yahoo_stock_src.GetStockDescription()
         result.append((stock_symbol, price, change, description))
+        print(result[flag])
+        flag+=1
     df = pd.DataFrame(result, columns=["Symbol", "Price", "Change", "Discription"])
     df.to_excel("stock_search.xlsx", sheet_name="stock", index=False)
