@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+    h1 {
+        text-align: center;        
+    }
+    table {
+        border-collapse: collapse;
+        width: 20%;
+        margin-left: auto;  /* Centers the table */
+        margin-right: auto; /* Centers the table */
+    }
+
+    th, td {
+        border: 1px solid #3d3a6d; /* Solid black border */
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+
+</body>
+</html>

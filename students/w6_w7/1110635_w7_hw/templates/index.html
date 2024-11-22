@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>學生成績列表</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>學生成績列表</h1>
+    <table>
+        <tr>
+            <th>名字</th>
+            <th>國文</th>
+            <th>英文</th>
+            <th>數學</th>
+            <th>理化</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.chinese }}</td>
+            <td>{{ student.english }}</td>
+            <td>{{ student.math }}</td>
+            <td>{{ student.physics }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('update_student') }}">新增/更新學生資料</a>
+</body>
+</html>
