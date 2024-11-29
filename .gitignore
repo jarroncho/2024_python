@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 teacher/w8-w10/logs/*
+teacher/w8-w10/PetImages/*
+teacher/w8-w10/working/*
+teacher/w8-w10/log.csv
+teacher/w8-w10/Dogs_Cats_Example.ipynb
+
+student/w8-w10/PetImages/*
+student/w8-w10/working/*
+student/w8-w10/log.csv
 
 # C extensions
 *.so
