@@ -185,7 +185,7 @@ plt.xlabel('epoch')
 plt.legend(['train', 'val'], loc='upper left')
 plt.show()
 
-plt.plot(history.history['lr'])
+plt.plot(history.history['learning_rate'])
 plt.title('Learning rate')
 plt.ylabel('learnin rate')
 plt.xlabel('epoch')
