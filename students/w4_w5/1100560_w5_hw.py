@@ -6,118 +6,66 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 
-
-class YahooStock():
+class YahooStock:
     def __init__(self):
-        # 安裝Chrome驅動程式及建立Chrome物件
+        # 初始化Chrome物件
         self.browser = webdriver.Chrome()
 
-        start_time=time.time()
-        self.browser.get("https://finance.yahoo.com/quote/")
-        print("load page time: ",time.time()-start_time)
-        locator = (By.ID, "ybar-sbq")  # 定位器
-        start_time=time.time()
-        self.input = WebDriverWait(self.browser, 30).until(
-            EC.presence_of_element_located(locator),
-            "Timeout while waiting for search input box")
-        print("get input time:",time.time()-start_time)
-
-        locator = (By.ID, "ybar-search")
-        start_time=time.time()
-        self.search = WebDriverWait(self.browser, 30).until(
-            EC.presence_of_element_located(locator),
-            "Timeout while waiting for search button")
-        print("get search time",time.time()-start_time)
-    
     def __del__(self):
         self.browser.quit()
 
-    def FetchStockInfo(self,stock_name):
+    def fetch_stock_info(self, stock_name):
+        # 進入Yahoo股票頁面並搜索股票
+        self.browser.get("https://finance.yahoo.com/quote/")
         
-        '''self.input.send_keys(stock_name)
-
-        # Wait for the search button to be clickable
-        WebDriverWait(self.browser, 30).until(
-        EC.element_to_be_clickable(self.search)
+        # 定位搜尋輸入框和搜尋按鈕
+        input_box = WebDriverWait(self.browser, 30).until(
+            EC.presence_of_element_located((By.ID, "ybar-sbq"))
         )
+        search_button = WebDriverWait(self.browser, 30).until(
+            EC.presence_of_element_located((By.ID, "ybar-search"))
+        )
+
+        input_box.clear()
+        input_box.send_keys(stock_name)
         
-        self.search.click()
-        start_time=time.time()
-         # Wait until the search button is no longer visible or present in the DOM
-        WebDriverWait(self.browser, 30).until(
-        EC.staleness_of(self.search)  # Wait for the button to go stale
-        )
-        print("get stock "+stock_name+" page ",time.time()-start_time)
+        # 點擊搜尋按鈕
+        WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable(search_button)).click()
 
-        # 用BeautifulSoup解析HTML
-        self.stock_soup = BeautifulSoup(self.browser.page_source, "lxml")'''
-       # 每次查詢前重新定位搜尋框和搜尋按鈕
-        locator = (By.ID, "ybar-sbq")
-        self.input = WebDriverWait(self.browser, 30).until(
-            EC.presence_of_element_located(locator),
-            "等待搜尋輸入框超時"
-        )
-
-        locator = (By.ID, "ybar-search")
-        self.search = WebDriverWait(self.browser, 30).until(
-            EC.presence_of_element_located(locator),
-            "等待搜尋按鈕超時"
-        )
-
-        self.input.clear()  # 清空輸入框，避免輸入重複
-        self.input.send_keys(stock_name)
-
-        # 等待搜尋按鈕可點擊
-        WebDriverWait(self.browser, 30).until(
-            EC.element_to_be_clickable(self.search)
-        )
-
-        self.search.click()
-        start_time = time.time()
-        # 等待搜尋按鈕消失或不再出現在DOM中
-        WebDriverWait(self.browser, 30).until(
-            EC.staleness_of(self.search)  # 等待按鈕變為無效
-        )
-        print("獲取股票 " + stock_name + " 頁面 ", time.time() - start_time)
-
-        # 用BeautifulSoup解析HTML
+        # 等待搜尋完成並抓取資料
+        WebDriverWait(self.browser, 30).until(EC.staleness_of(search_button))
         self.stock_soup = BeautifulSoup(self.browser.page_source, "lxml")
-        
-        
-    def GetStockPrice(self):
-        #stock_price = self.stock_soup.find('div', {'class': 'My(6px) Pos(r) smartphone_Mt(6px)'}).find('span').text
-        price_div = self.stock_soup.find('div', {'class': 'container yf-1tejb6'})
-        price_span = price_div.find('span').text
-        return price_span
-    
-    def GetStockChange(self):
-        change_div = self.stock_soup.find('fin-streamer', {'class': 'priceChange yf-1tejb6'})
-        change_span = change_div.find('span').text
-        return change_span
-    
-    def GetStockDescription(self):
-        Description_div = self.stock_soup.find('div', {'class': 'left yf-1s1umie wrap'})
-        Description_span = Description_div.find('h1', {'class':'yf-xxbei9'}).text
-        return Description_span
-    
-if __name__ == "__main__":
 
-    yahoo_stock_src = YahooStock()
+    def get_stock_price(self):
+        # 獲取股票價格
+        price_span = self.stock_soup.find('fin-streamer', {'data-field': 'regularMarketPrice'}).text
+        return price_span
+
+    def get_stock_change(self):
+        # 獲取股票變化
+        change_span = self.stock_soup.find('fin-streamer', {'data-field': 'regularMarketChangePercent'}).text
+        return change_span
+
+    def get_stock_description(self):
+        # 獲取股票描述
+        description_span = self.stock_soup.find('h1', {'class': 'D(ib) Fz(18px)'}).text
+        return description_span
+
+if __name__ == "__main__":
+    yahoo_stock = YahooStock()
     
-    stock_symbols = ['AAPL', 'GOOGL','AMZN','INTC','AMD','NVDA','TSLA']
+    stock_symbols = ['AAPL', 'GOOGL', 'AMZN', 'INTC', 'AMD', 'NVDA', 'TSLA']
     result = []
 
     for symbol in stock_symbols:
-        yahoo_stock_src.FetchStockInfo(symbol)
-        price = yahoo_stock_src.GetStockPrice()
-        change = yahoo_stock_src.GetStockChange()
-        description = yahoo_stock_src.GetStockDescription()
-
+        yahoo_stock.fetch_stock_info(symbol)
+        price = yahoo_stock.get_stock_price()
+        change = yahoo_stock.get_stock_change()
+        description = yahoo_stock.get_stock_description()
+        
         # 加入結果列表
         result.append((symbol, price, change, description))
 
-    #save to excel file
-    df = pd.DataFrame(result, columns=["Symbol", "Stock Price","Change","Description"])
+    # 保存到Excel檔案
+    df = pd.DataFrame(result, columns=["Symbol", "Stock Price", "Change", "Description"])
     df.to_excel("stock_search.xlsx", sheet_name="stock", index=False)
-    
-   
