@@ -9,7 +9,7 @@ import datetime
 # mse for loss, sgd for optimizer
 use_mse = True
 use_relu = True
-epoch_num = 30
+epoch_num = 100
 if use_relu:
     activation_function = 'relu'
 else:
