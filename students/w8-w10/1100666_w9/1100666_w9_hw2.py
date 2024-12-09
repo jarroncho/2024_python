@@ -9,7 +9,7 @@ import datetime
 # mse for loss, sgd for optimizer
 use_mse = True
 use_relu = True
-epoch_num = 100
+epoch_num = 450  ##學習次數
 if use_relu:
     activation_function = 'relu'
 else:
@@ -56,9 +56,11 @@ model = tf.keras.models.Sequential()
 #    model.add(tf.keras.layers.Flatten(input_shape=(28, 28), name='layers_flatten')) 
 
 # Add Input layer, 隱藏層(hidden layer) 有 64個輸出變數, another sigmoid for activation
-model.add(tf.keras.layers.Dense(units=64, input_dim=784,  kernel_initializer='normal',activation=activation_function, name='layers_dense')) 
-model.add(tf.keras.layers.Dropout(0.2, name='layers_dropout'))
-model.add(tf.keras.layers.Dense(units=64, kernel_initializer='normal',activation=activation_function, name='layers_dense_2')) 
+model.add(tf.keras.layers.Dense(units=64, input_dim=784,  kernel_initializer='normal',activation=activation_function, name='layers_dense1')) 
+model.add(tf.keras.layers.Dropout(0.05, name='layers_dropout1'))
+model.add(tf.keras.layers.Dropout(0.05, name='layers_dropout2'))
+model.add(tf.keras.layers.Dropout(0.05, name='layers_dropout3'))
+model.add(tf.keras.layers.Dense(units=64, input_dim=10,  kernel_initializer='normal',activation=activation_function, name='layers_dense_5')) 
 # Add output layer
 model.add(tf.keras.layers.Dense(units=10,  kernel_initializer='normal',activation='softmax', name='layers_dense_3'))
 
@@ -66,7 +68,7 @@ model.add(tf.keras.layers.Dense(units=10,  kernel_initializer='normal',activatio
 # 進行訓練, 訓練過程會存在 train_history 變數中
 if use_mse:
     model.compile(loss='mse', optimizer='SGD', metrics=['accuracy']) 
-    train_history = model.fit(x=x_train_2D, y=y_train_one_hot, validation_split=0.2, epochs=epoch_num, batch_size=800, 
+    train_history = model.fit(x=x_train_2D, y=y_train_one_hot, validation_split=0.2, epochs=epoch_num, batch_size=150, 
                               verbose=2,callbacks=[tensorboard_callback]) 
     # 顯示訓練成果(分數)
     scores = model.evaluate(x_test_2D, y_test_one_hot)  
