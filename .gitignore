@@ -7,6 +7,11 @@ teacher/w8-w10/PetImages/*
 teacher/w8-w10/working/*
 teacher/w8-w10/log.csv
 teacher/w8-w10/Dogs_Cats_Example.ipynb
+teacher/llm/logs/*
+teacher/llm/results/*
+teacher/llm/Llama-3.2-1B/*
+teacher/llm/Llama-3.2-1B-Instruct/*
+hf_token.txt
 
 student/w8-w10/PetImages/*
 student/w8-w10/working/*

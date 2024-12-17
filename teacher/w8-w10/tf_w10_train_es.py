@@ -144,17 +144,18 @@ callbacks = [learning_rate_reduction, early_stopping , #checkpoint_loss ,
 
 #train the model
 #EPOCHS = 60
-EPOCHS = 10
+EPOCHS = 60
 beg = int(time.time())
+
+print("training started samples=",train_generator.samples)
 
 history = model.fit(
         train_generator,
         steps_per_epoch = train_generator.samples  // BATCH,
         epochs = EPOCHS,
         validation_data = validation_generator,
-        validation_steps = validation_generator.samples // BATCH,
-        )
-        #callbacks = callbacks)
+        validation_steps = validation_generator.samples // BATCH,        
+        callbacks = callbacks)
 
 end = int(time.time())
 t = end - beg
@@ -162,12 +163,13 @@ hrs = t // 3600
 mins = (t - 3600 * hrs) // 60
 secs = t % 60
 print("training took {} hrs -- {} mins -- {} secs".format(hrs,mins,secs))
-model.save_weights(models_path + '/first_try.weights.h5')
-model.save(models_path + '/first_try.h5')
+model.save_weights(models_path + '/1600_es.weights.h5')
+model.save(models_path + '/1600_es.h5')
 
 #evaluate the model
 scores = model.evaluate(test_generator)
 
+#print(history.history.keys())
 #plot
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])

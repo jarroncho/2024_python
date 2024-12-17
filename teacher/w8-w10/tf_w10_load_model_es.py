@@ -41,8 +41,7 @@ print("test_generator: ",test_generator.class_indices)
 
 # Specify the path to your saved model
 models_path = 'working/Models'
-#model_path = models_path + '/first_try.h5'
-model_path = models_path + '/1600_demo.h5'
+model_path = models_path + '/first_try.h5'
 
 # Load the model
 model = load_model(model_path)
