@@ -8,7 +8,7 @@ def add_numbers(a, b, c):
 
 
 # Create summary writer for TensorBoard
-log_dir = "logs/1110505/" + datetime.now().strftime("%Y%m%d-%H%M%S")
+log_dir = "logs/1110635/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 writer = tf.summary.create_file_writer(log_dir)
 
 # Use tf.summary.trace_on to trace the graph
