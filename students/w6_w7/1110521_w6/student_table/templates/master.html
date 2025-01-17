@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    th, td {
+        border: 1px solid #000; /* Solid black border */
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+
+</body>
+</html>

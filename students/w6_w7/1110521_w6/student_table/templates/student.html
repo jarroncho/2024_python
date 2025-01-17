@@ -1,0 +1,31 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Grade
+{% endblock %}
+
+
+{% block content %}
+  <h1>Grade </h1>
+  
+  <table border="solid">
+    <thead>
+      <tr>
+          <th>Name</th>
+          <th>Stundent ID</th>
+          <th>ST_ID</th>                  
+      </tr>
+  </thead>
+  <tbody>
+    {% for x in Students %}
+      <tr>
+        <td>{{ x.name }}</td>
+        <td>{{ x.student_ID }}</td>
+        <td>{{ x.ST_ID }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}
+
+<button 
